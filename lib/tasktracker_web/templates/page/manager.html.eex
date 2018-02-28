@@ -1,0 +1,1 @@
+<%= render TasktrackerWeb.ManagerView, "form.html", Map.put(assigns, :action, manager_path(@conn, :create)) %>

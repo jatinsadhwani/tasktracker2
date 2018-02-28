@@ -1,0 +1,62 @@
+<script>
+window.time_path = "<%= time_path(@conn, :index) %>";
+window.current_user_id = "<%= @current_user.id %>";
+</script>
+
+
+<h2>Show Task</h2>
+
+<ul>
+  <li>
+    <strong>ID:</strong>
+    <%= @task.id %>
+  </li>
+  <li>
+    <strong>Title:</strong>
+    <%= @task.title %>
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @task.description %>
+  </li>
+
+  <li>
+    <strong>Status:</strong>
+    <%= @task.status %>
+  </li>
+
+</ul>
+
+<span><%= link "Back", to: page_path(@conn, :task) %></span>
+<button class="create-button btn btn-primary" data-task_id = "<%= @task.id %>">New Time Bloc</button>
+
+<div class="row">
+  <div class="col-3">
+    <h4> Block ID</h4>
+  </div>
+
+  <div class="col-3">
+    <h4> Start time</h4>
+  </div>
+
+  <div class="col-3">
+    <h4> End time</h4>
+  </div>
+</div>
+
+<%= Enum.map Enum.filter(@times, fn(time) -> @task.id == time.task_id end), fn time -> %>
+<div class="row">
+  <div class="col-3">
+    <p>time.id</p>
+  </div>
+
+  <div class="col-3">
+    <p>time.starttime</p>
+  </div>
+
+  <div class="col-3">
+    <p>time.endtime</p>
+  </div>
+</div>
+<% end %>
